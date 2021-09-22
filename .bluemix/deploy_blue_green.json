@@ -261,7 +261,23 @@
                    "$ref":"#/messages/deploy.vsiPlaceHolder"
                 },
                 "key":"virtual-server-instance"
-             }
+             },
+               {
+               "type":"label",
+               "description":{
+                   "$ref":"#/messages/deploy.poolUsernameVirtualServerr"
+                },
+               "title":"Instance Group"
+            }, 
+        {
+         "type":"label",
+         "title":""
+      },
+       {
+          "type":"select",
+          "title":"Instance Groups",
+          "key":"instancegroups"
+       }
           ]
        },
        {
@@ -451,22 +467,7 @@
             "$ref": "#/messages/deploy.poolSshVirtualServer"
         },
          "key":"host-ssh-keys"
-      }, {
-               "type":"label",
-               "description":{
-                   "$ref":"#/messages/deploy.poolUsernameVirtualServerr"
-                },
-               "title":"Instance Group"
-            }, 
-        {
-         "type":"label",
-         "title":""
-      },
-       {
-          "type":"select",
-          "title":"Instance Groups",
-          "key":"instancegroups"
-       }
+      }
    
    ]
 }                 
