@@ -24,7 +24,7 @@
              "v-type":"api-key"
           }
        },
-       "vpcRegion":{
+       "vsiRegion":{
           "description":{
              "$ref":"#/messages/deploy.vpcRegionLabel"
           },
@@ -44,7 +44,45 @@
          "validator":{
             "v-type":"alb-instances",
             "params":[
+                "vpcRegion"
+            ]
+         }
+      },
+       "vpcRegion":{
+         "description":{
+            "$ref":"#/messages/deploy.vpcRegionLabel"
+         },
+         "type":"string",
+         "validator":{
+            "v-type":"vpc-region",
+            "params":[
                "api-key"
+            ]
+         }
+      },
+        "vpcName":{
+         "description":{
+            "$ref":"#/messages/deploy.vpcRegionLabel"
+         },
+         "type":"string",
+         "validator":{
+            "v-type":"vpc-name",
+            "params":[
+               "api-key",
+                "vpcRegion"
+            ]
+         }
+      },
+        "instancegroups":{
+         "description":{
+            "$ref":"#/messages/deploy.vpcRegionLabel"
+         },
+         "type":"string",
+         "validator":{
+            "v-type":"vpc-instance-group",
+            "params":[
+               "api-key",
+                "vpcRegion"
             ]
          }
       },
@@ -135,7 +173,7 @@
           "validator":{
              "v-type":"vsi-instances",
              "params":[
-                "vpcRegion"
+                "vsiRegion"
              ]
           },
           "type":"string",
@@ -145,7 +183,7 @@
     "required":[
        "app-name",
        "api-key",
-       "vpcRegion",
+       "vsiRegion",
        "virtual-server-instance"
     ],
     "form":[
@@ -208,7 +246,7 @@
                 "placeholder":{
                    "$ref":"#/messages/deploy.regionPlaceHolder"
                 },
-                "key":"vpcRegion"
+                "key":"vsiRegion"
              },
              {
                 "type":"label",
@@ -291,7 +329,34 @@
              "29%"
           ],
           "items":[
-             {
+              {
+                "type":"label",
+                "description":{
+                    "$ref":"#/messages/deploy.loadBalancerName"
+                 },
+                "title":"VPC Region"
+             },
+              {
+                "type":"label",
+                "title":""
+             },
+              {
+                "type":"select",
+                "readonly":true,
+                "title":{
+                   "$ref":"#/messages/deploy.loadBalancerName"
+                },
+                "key":"vpcRegion"
+             },
+              {
+                "type":"label",
+                "title":""
+             },
+              {
+                 "type":"label",
+                 "title":""
+                }, 
+              {
                 "type":"label",
                 "description":{
                     "$ref":"#/messages/deploy.loadBalancerName"
@@ -411,7 +476,39 @@
             "$ref": "#/messages/deploy.poolSshVirtualServer"
         },
          "key":"host-ssh-keys"
-      }
+      }, {
+               "type":"label",
+               "description":{
+                   "$ref":"#/messages/deploy.poolUsernameVirtualServerr"
+                },
+               "title":"Instance Group"
+            }, 
+        {
+         "type":"label",
+         "title":""
+      },
+       {
+          "type":"select",
+          "title":"Instance Groups",
+          "key":"instancegroups"
+       },
+             {
+               "type":"label",
+               "description":{
+                   "$ref":"#/messages/deploy.poolUsernameVirtualServerr"
+                },
+               "title":"VPC Name"
+            }, 
+        {
+         "type":"label",
+         "title":""
+      },
+       {
+          "type":"select",
+          "title":"Instance Groups",
+          "key":"vpcName"
+       }
+   
    ]
 }                 
     ]
