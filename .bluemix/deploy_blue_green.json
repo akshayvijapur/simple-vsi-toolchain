@@ -24,18 +24,6 @@
              "v-type":"api-key"
           }
        },
-       "vsiRegion":{
-          "description":{
-             "$ref":"#/messages/deploy.vpcRegionLabel"
-          },
-          "type":"string",
-          "validator":{
-             "v-type":"vsi-region",
-             "params":[
-                "api-key"
-             ]
-          }
-       },
        "loadbalancer":{
          "description":{
             "$ref":"#/messages/deploy.vpcRegionLabel"
@@ -82,7 +70,7 @@
             "v-type":"vpc-instance-group",
             "params":[
                "api-key",
-                "vpcRegion"
+                "vpcName"
             ]
          }
       },
@@ -173,7 +161,7 @@
           "validator":{
              "v-type":"vsi-instances",
              "params":[
-                "vsiRegion"
+                "vpcName"
              ]
           },
           "type":"string",
@@ -183,7 +171,6 @@
     "required":[
        "app-name",
        "api-key",
-       "vsiRegion",
        "virtual-server-instance"
     ],
     "form":[
@@ -216,19 +203,42 @@
              "47%"
           ],
           "items":[
-             {
+              {
                 "type":"label",
                 "description":{
-                    "$ref":"#/messages/deploy.vpcRegionTitle"
+                    "$ref":"#/messages/deploy.loadBalancerName"
                  },
-                "title":{
-                   "$ref":"#/messages/deploy.vpcRegionTitle"
-                }
+                "title":"VPC Region"
              },
-             {
+              {
                 "type":"label",
                 "title":""
              },
+              {
+                "type":"select",
+                "readonly":true,
+                "title":{
+                   "$ref":"#/messages/deploy.loadBalancerName"
+                },
+                "key":"vpcRegion"
+             },
+              
+             {
+               "type":"label",
+               "description":{
+                   "$ref":"#/messages/deploy.poolUsernameVirtualServerr"
+                },
+               "title":"VPC Name"
+            }, 
+        {
+         "type":"label",
+         "title":""
+      },
+       {
+          "type":"select",
+          "title":"Instance Groups",
+          "key":"vpcName"
+       },
              {
                 "type":"label",
                 "description":{
@@ -237,16 +247,6 @@
                 "title":{
                    "$ref": "#/messages/deploy.bastion"
                 }
-             },
-             {
-                "type":"select",
-                "title":{
-                   "$ref":"#/messages/deploy.vpcRegionTitle"
-                },
-                "placeholder":{
-                   "$ref":"#/messages/deploy.regionPlaceHolder"
-                },
-                "key":"vsiRegion"
              },
              {
                 "type":"label",
@@ -329,33 +329,8 @@
              "29%"
           ],
           "items":[
-              {
-                "type":"label",
-                "description":{
-                    "$ref":"#/messages/deploy.loadBalancerName"
-                 },
-                "title":"VPC Region"
-             },
-              {
-                "type":"label",
-                "title":""
-             },
-              {
-                "type":"select",
-                "readonly":true,
-                "title":{
-                   "$ref":"#/messages/deploy.loadBalancerName"
-                },
-                "key":"vpcRegion"
-             },
-              {
-                "type":"label",
-                "title":""
-             },
-              {
-                 "type":"label",
-                 "title":""
-                }, 
+             
+              
               {
                 "type":"label",
                 "description":{
@@ -491,22 +466,6 @@
           "type":"select",
           "title":"Instance Groups",
           "key":"instancegroups"
-       },
-             {
-               "type":"label",
-               "description":{
-                   "$ref":"#/messages/deploy.poolUsernameVirtualServerr"
-                },
-               "title":"VPC Name"
-            }, 
-        {
-         "type":"label",
-         "title":""
-      },
-       {
-          "type":"select",
-          "title":"Instance Groups",
-          "key":"vpcName"
        }
    
    ]
